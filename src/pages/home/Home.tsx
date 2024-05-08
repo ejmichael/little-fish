@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Box, Typography, CircularProgress } from '@mui/material';
 import Banner from "../../components/banner/Banner";
 import ProductCard from "../../components/product-card/ProductCard";
+import products from '../../data/products';
 
 
 const Home: React.FC = () => {
@@ -15,10 +16,9 @@ const Home: React.FC = () => {
                 p={2}
                 m={5}
             >
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                ))}
             </Box >
             {/* <Footer /> */}
         </Box>

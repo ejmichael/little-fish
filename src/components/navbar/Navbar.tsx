@@ -1,9 +1,27 @@
 import { AppBar, Badge, Box, IconButton, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { AccountCircle } from '@mui/icons-material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
+
+import type { RootState } from '../../app/store'; 
+import Cart from '../../pages/cart/Cart';
 
 const Navbar: React.FC = () => {
+
+  const cartItems = useSelector((state: RootState) => state.cart.cart)
+  console.log(cartItems);
+
+  const [cartModalOpen, setCartModalOpen] = useState(false); // State to control the modal
+
+  const handleCartIconClick = () => {
+      setCartModalOpen(true); // Open the cart modal
+  };
+
+  const handleCartModalClose = () => {
+      setCartModalOpen(false); // Close the cart modal
+  };  
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ p: 1, display:'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -21,8 +39,9 @@ const Navbar: React.FC = () => {
               size="large"
               aria-label="cart"
               color="inherit"
+              onClick={handleCartIconClick}
             >
-              <Badge badgeContent={3} color="error">
+              <Badge badgeContent={cartItems.length} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
@@ -39,6 +58,7 @@ const Navbar: React.FC = () => {
             </IconButton>
           </Box>
             </AppBar>
+            <Cart open={cartModalOpen} onClose={handleCartModalClose} />
         </Box>
     )
 }
