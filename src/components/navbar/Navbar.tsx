@@ -23,8 +23,8 @@ const Navbar: React.FC = () => {
   };  
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ p: 1, display:'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <Box sx={{ flexGrow: 1, height: '90px', }}>
+            <AppBar position="fixed" sx={{ p: 1, display:'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <Typography
                     variant="h6"
                     noWrap
