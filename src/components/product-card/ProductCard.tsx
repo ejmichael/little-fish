@@ -43,13 +43,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <Typography variant="body1" component="div" sx={{minHeight: '60px', textAlign: 'left'}}>
                     {product.productName}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" sx={{maxHeight: '50px', textAlign: 'left'}}>
-                    {product.productDescription}
+                <Typography variant="body2" color="textSecondary" sx={{maxHeight: '25px', textAlign: 'left'}}>
+                    {product.productBrand}
                 </Typography>
             </CardContent>
             <CardContent>
-                <Typography variant="body2" color="text" sx={{ textAlign: 'left', fontWeight: 400, textDecoration: 'line-through', color: '#b0b0b0'}}>Was R {product.productPrice}</Typography>
-                <Typography variant="h6" color="text" sx={{ textAlign: 'left', fontWeight: 700 }}>Now R {product.productPrice * (1-product.discount)}</Typography>
+                <Typography variant="body2" color="text" sx={{ textAlign: 'left', fontWeight: 400, textDecoration: 'line-through', color: '#b0b0b0'}}>Was R {product.productPrice.toFixed(2)}</Typography>
+                <Typography variant="h6" color="text" sx={{ textAlign: 'left', fontWeight: 700 }}>Now R {(product.productPrice * (1-product.discount)).toFixed(2)}</Typography>
             </CardContent>
             {productInCart ? (
                 <CardActions sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
