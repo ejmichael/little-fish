@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     };
 
     return (
-        <Card sx={{ width: '250px', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
             <CardMedia
                 component="img"
                 image={product.imgSource}
@@ -40,29 +40,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 sx={{ height: '180px', width: '100%' }}
             />
             <CardContent>
-                <Typography variant="h6" component="div" sx={{minHeight: '60px'}}>
+                <Typography variant="body1" component="div" sx={{minHeight: '60px', textAlign: 'left'}}>
                     {product.productName}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" sx={{maxHeight: '50px'}}>
+                <Typography variant="body2" color="textSecondary" sx={{maxHeight: '50px', textAlign: 'left'}}>
                     {product.productDescription}
                 </Typography>
             </CardContent>
             <CardContent>
-                <Typography variant="h6" color="text" sx={{ textAlign: 'left', fontWeight: 700 }}>R {product.productPrice}</Typography>
+                <Typography variant="body2" color="text" sx={{ textAlign: 'left', fontWeight: 400, textDecoration: 'line-through', color: '#b0b0b0'}}>Was R {product.productPrice}</Typography>
+                <Typography variant="h6" color="text" sx={{ textAlign: 'left', fontWeight: 700 }}>Now R {product.productPrice * (1-product.discount)}</Typography>
             </CardContent>
             {productInCart ? (
                 <CardActions sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
-                    <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center', gap:2 }}>
+                    <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center', gap:2, border: '1px solid #967ADC', borderRadius: '14px'}}>
                         <Button
                             onClick={handleDecreaseQty}
                             sx={{
-                                backgroundColor: 'primary.main',
+                                backgroundColor: '#967ADC',
                                 color: 'white',
                                 borderRadius: '12px',
                                 minWidth: 32,
                                 height: 32,
                                 padding: 0,
-                                '&:hover': { backgroundColor: '#e0f7fa' }
+                                '&:hover': { backgroundColor: '#AC92CE' }
                             }}
                         >
                             -
@@ -73,13 +74,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         <Button
                             onClick={handleIncreaseQty}
                             sx={{
-                                backgroundColor: 'primary.main',
+                                backgroundColor: '#967ADC',
                                 color: 'white',
                                 borderRadius: '12px',
                                 height: 32,
                                 minWidth: 32,
                                 padding: 0,
-                                '&:hover': { backgroundColor: '#e0f7fa' }
+                                '&:hover': { backgroundColor: '#AC92CE' }
                             }}
                         >
                             +
@@ -94,7 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                             minWidth: 32,
                             borderRadius: '12px',
                             padding: 0,
-                            '&:hover': { backgroundColor: '#ffebee' }
+                            '&:hover': { backgroundColor: '#b55858' }
                         }}
                     >
                         X
@@ -105,16 +106,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <Button
                         onClick={handleAddToCart}
                         sx={{
-                            backgroundColor: 'primary.main',
+                            backgroundColor: '#967ADC',
                             color: 'white',
                             height: 40,
                             width:'100%',
                             borderRadius: '16px',
                             padding: '0 16px',
-                            '&:hover': { backgroundColor: 'primary.dark' }
+                            '&:hover': { backgroundColor: '#AC92CE' }
                         }}
                     >
-                        Buy Now
+                        Add to cart
                     </Button>
                 </CardActions>
             )}

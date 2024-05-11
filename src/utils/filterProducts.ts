@@ -1,11 +1,9 @@
 import { Product } from '../data/products';
 
-export const filterProducts = (products: Product[], category: string): Product[] => {
-    if(!category) {
-        return products
-    }
-
+export const filterProducts = (products: Product[], category: string, maxPrice: number): Product[] => {
     return products.filter((product) => {
-        return Array.isArray(product.tags) && product.tags.includes(category);
-    })
-}
+        const matchesCategory = category === '' || (Array.isArray(product.tags) && product.tags.includes(category.toLowerCase()));
+        const matchesPrice = maxPrice === 0 || product.productPrice <= maxPrice;
+        return matchesCategory && matchesPrice;
+    });
+};

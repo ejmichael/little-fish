@@ -10,29 +10,30 @@ import {filterProducts} from '../../utils/filterProducts'
 const Home: React.FC = () => {
 
     const [category, setCategory] = React.useState('');
+    const [maxPrice, setMaxPrice] = React.useState(0);
 
     console.log(category);
 
-    const filteredProducts = filterProducts(products, category)
+    const filteredProducts = filterProducts(products, category, maxPrice);
 
     return (
         <Box>
             <Banner />
             <Grid container spacing={2} >
-                <Grid item sm={12} md={3} >
+                <Grid item xs={12} md={3}>
                     <Box sx={{ height: '100%'}}>
-                        <Filter category={category} setCategory={setCategory} />
+                        <Filter category={category} setCategory={setCategory} maxPrice={maxPrice} setMaxPrice={setMaxPrice} />
                     </Box>
                 </Grid>
-                <Grid item sm={12} md={9} sx={{ height: '100%'}}>
+                <Grid item xs={12} md={9} sx={{ height: '100%'}}>
                     <Box 
                         p={2}
-                        m={3}
+                        m={2}
                         sx={{ height: '100%'}}
                     >
-                        <Grid container spacing={4} >
+                        <Grid container spacing={2} >
                             {filteredProducts.map((product) => (
-                                <Grid item xs={6} sm={6} md={3} key={product.id}>
+                                <Grid item xs={6} sm={4} md={3} key={product.id}>
                                     <ProductCard key={product.id} product={product} />
                                 </Grid>
                             ))}

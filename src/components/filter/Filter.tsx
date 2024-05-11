@@ -1,17 +1,25 @@
-import React from "react";
-import { Box, FormControl, InputLabel, MenuItem, Select, Slider, Typography } from "@mui/material";
+import React, { ChangeEvent } from "react";
+import { Box, FormControl, Input, InputLabel, MenuItem, Select, Slider, Typography } from "@mui/material";
 import { SelectChangeEvent } from '@mui/material/Select';
+import { TextChange } from "typescript";
 
 interface FilterProps {
     category: string;
     setCategory: (category: string) => void;
+    maxPrice: number;
+    setMaxPrice: (category: number) => void;
 }
 
-const Filter: React.FC<FilterProps> = ({ category, setCategory }) => {
+const Filter: React.FC<FilterProps> = ({ category, setCategory, maxPrice, setMaxPrice }) => {
 
     const handleChange = (event: SelectChangeEvent<string>) => {
         setCategory(event.target.value.toLocaleLowerCase());
     };
+    
+    const handleMaxPriceChange = (event: any, newValue: number | number[]) => {
+        setMaxPrice(newValue as number);
+    };
+
 
     function valuetext(value: number) {
         return `R ${value}`;
@@ -42,7 +50,7 @@ const Filter: React.FC<FilterProps> = ({ category, setCategory }) => {
                 </FormControl>
             </Box>
             <Box>
-                <InputLabel id="category-select-label">Max Price</InputLabel>
+                <InputLabel id="category-select-label">Max Price: R {maxPrice}</InputLabel>
                 <Slider
                     aria-label="Price"
                     defaultValue={900}
@@ -53,6 +61,8 @@ const Filter: React.FC<FilterProps> = ({ category, setCategory }) => {
                     marks
                     min={100}
                     max={1000}
+                    onChange={handleMaxPriceChange}
+                    sx={{ color: '#967ADC'}}
                 />
             </Box>
         </Box>
