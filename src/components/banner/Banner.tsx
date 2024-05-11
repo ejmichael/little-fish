@@ -17,7 +17,7 @@ const Banner: React.FC = () => {
       }}
     >
       <Typography variant="h2" gutterBottom>
-        Find the best tech equipemnt in South Africa.
+        Find the best tech equipment in South Africa.
       </Typography>
     </Box>
   );
