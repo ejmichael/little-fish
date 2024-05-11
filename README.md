@@ -1,4 +1,4 @@
-# My SImple E-Commerce App
+# My Simple E-Commerce App
 
 Welcome to my e-commerce application! 
 This README provides detailed instructions on setting up and running the application, including any necessary API keys or configuration details.
